@@ -1,0 +1,22 @@
+.container {
+    height: 500px;
+    width: 300px;
+}
+
+.row {
+    display: flex;
+    gap: 30px;
+    justify-content: space-evenly;
+    margin: 10px;
+
+}
+.display{
+    padding: 50px;
+    background-color: rgb(230, 233, 225);
+}
+
+.btn {
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
