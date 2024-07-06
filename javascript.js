@@ -31,7 +31,6 @@ function operate(op,n1,n2){
 }
 //select Html side stuff 
 let num1 ='';
-let num2 ='';
 let operator = ''; 
 let currentValue =' ';
 let numbers = document.querySelectorAll('.num');
@@ -59,6 +58,7 @@ numbers.forEach((number)=> number.addEventListener("click", (e)=>{
 function handleOperator(ope){
     operator += ope;
     num1 = currentValue;
+    console.log(num1);
     currentValue ='';
 }
 
@@ -71,8 +71,10 @@ function calculate(){
     num1 = Number(num1);
     currentValue = Number(currentValue);
     let finalValue = operate(operator,num1,currentValue);
-    console.log(finalValue);
     display.textContent = finalValue;
+    currentValue = finalValue;
+    operator = '';
+
 }
 
 equal.addEventListener("click", calculate);
