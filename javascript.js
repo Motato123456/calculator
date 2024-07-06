@@ -30,31 +30,56 @@ function operate(op,n1,n2){
     }
 }
 //select Html side stuff 
-let num1;
-let num2;
-let operator; 
-let screen =' ';
+let num1 ='';
+let num2 ='';
+let operator = ''; 
+let currentValue =' ';
 let numbers = document.querySelectorAll('.num');
 let operon = document.querySelectorAll('.op');
 let equal = document.querySelector('.equal');
 let clear = document.querySelector('.clear');
-let display = document.querySelector('.display')
-
-function handleNumber(num){
-    screen += num
-}
-numbers.forEach((number)=> number.addEventListener("click", (e)=>{
-    handleNumber(e.target.textContent);
-    display.textContent = screen
-    
-}))
+let display = document.querySelector('.display');
 
 clear.addEventListener('click',()=> {
     display.textContent = " ";
-    screen = ' ';
+    currentValue = ' ';
+    operator =' ';
+    num1 = '';
+    
 } )
+function handleNum1(num){
+    currentValue += num;
+}
+numbers.forEach((number)=> number.addEventListener("click", (e)=>{
+    handleNum1(e.target.textContent);
+    display.textContent = currentValue;
+    
+}))
+
+function handleOperator(ope){
+    operator += ope;
+    num1 = currentValue;
+    currentValue ='';
+}
+
+operon.forEach((op)=>op.addEventListener("click",(c)=>{
+    handleOperator(c.target.textContent);
+    display.textContent = operator;
+}))
+
+function calculate(){
+    num1 = Number(num1);
+    currentValue = Number(currentValue);
+    let finalValue = operate(operator,num1,currentValue);
+    console.log(finalValue);
+    display.textContent = finalValue;
+}
+
+equal.addEventListener("click", calculate);
 
 
+
+//equal function will need to clear op, num1, num2 
 
 
 
